@@ -2,3 +2,4 @@ boto3
 jsonlines
 python-dotenv
 wikipedia
+langchain==0.0.317
