@@ -1,3 +1,37 @@
+# Setup
+
+### Prerequisites
+- Python 3.9 or higher
+- admin access to AWS account
+- virtualenv installed
+- model access to amazon.titan-tg1-large and anthropic.claude-v2 granted in AWS account
+
+### HowTo
+1. create a virtual environment by running `python3 -m venv .venv`
+2. activate the virtual environment by running `source .venv/bin/activate`
+3. install dependencies by running `pip install -r requirements.txt`
+4. create IAM user named `bedrock-user-<your_initials>` in the AWS account with access key and secret access key, and create the following inline policy:
+    ```json
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "AllowBedrockAccess",
+                "Effect": "Allow",
+                "Action": ["bedrock:InvokeModel"],
+                "Resource": ["*"]
+            }
+        ]
+    }
+    ```
+5. create the file `.env` inside the project with the following content:
+    ```bash
+    AWS_ACCESS_KEY_ID=<your_access_key>
+    AWS_SECRET_ACCESS_KEY=<your_secret_access_key>
+   ```
+6. To run the scripts you can do: `python react/ReAct.py` or `python fact-checker/fact_checker.py`
+
+
 # Harnessing Large Language Models in Fake News Detection
 
 by Anamaria Todor and Marcel Castro
